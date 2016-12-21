@@ -21,6 +21,7 @@ pTier = tier
 pTeam = Team
 pRef = Ref
 pReviewsInLast7Days = ReviewsInLast7Days
+pteamSize = teamSize
 
 End Sub
 
@@ -40,3 +41,6 @@ Public Property Get ReviewsInLast7Days() As Integer
 ReviewsInLast7Days = pReviewsInLast7Days
 End Property
 
+Public Property Get teamSize() As Integer
+teamSize = pteamSize
+End Property

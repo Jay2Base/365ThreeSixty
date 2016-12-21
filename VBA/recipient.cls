@@ -14,13 +14,15 @@ Private pTier As Integer
 Private pTeam As Integer
 Private pReviewsRecievedInLast7Days As Integer
 Private pRef As Integer
+Private pteamSize As Integer
 
-Public Sub initiateProperties(Ref As Integer, tier As Integer, Team As Integer, ReviewsRecievedInLast7Days As Integer)
+Public Sub initiateProperties(Ref As Integer, tier As Integer, Team As Integer, ReviewsRecievedInLast7Days As Integer, teamSize As Integer)
 
 pTier = tier
 pTeam = Team
 pRef = Ref
 pReviewsRecievedInLast7Days = ReviewsRecievedInLast7Days
+pteamSize = teamSize
 
 End Sub
 
@@ -40,3 +42,6 @@ Public Property Get ReviewsRecievedInLast7Days() As Integer
 ReviewsRecievedInLast7Days = pReviewsRecievedInLast7Days
 End Property
 
+Public Property Get teamSize() As Integer
+teamSize = pteamSize
+End Property
