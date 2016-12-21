@@ -9,12 +9,15 @@ Set createReviewer = New reviewer
 Dim tier As Integer
 Dim Team As Integer
 Dim ReviewsInLast7Days As Integer
+Dim teamSize As Integer
 
     tier = getTier(Ref)
     Team = getTeam(Ref)
     ReviewsInLast7Days = getVotesSent(Ref)
+    teamSize = getteamSIze(Ref, Team)
     
-createReviewer.initiateProperties Ref:=Ref, tier:=tier, Team:=Team, ReviewsInLast7Days:=ReviewsInLast7Days
+    
+createReviewer.initiateProperties Ref:=Ref, tier:=tier, Team:=Team, ReviewsInLast7Days:=ReviewsInLast7Days, teamSize:=teamSize
 
 End Function
 
@@ -35,7 +38,7 @@ Dim teamSize As Integer
     teamSize = getteamSIze(Ref, Team)
 
     
-createRecipient.initiateProperties Ref:=Ref, tier:=tier, Team:=Team, ReviewsRecievedInLast7Days:=ReviewsRecievedInLast7Days
+createRecipient.initiateProperties Ref:=Ref, tier:=tier, Team:=Team, ReviewsRecievedInLast7Days:=ReviewsRecievedInLast7Days, teamSize:=teamSize
 
 End Function
 Private Function getTier(Ref) As Integer
@@ -54,14 +57,14 @@ Private Function getVotesRecieved(Ref)
     getVotesRecieved = DCount("voteRef", "reviews", "recipientRef = " & Ref)
 End Function
 Private Function getteamSIze(Ref, Team)
-    getteamSIze = DCount("employeeRef", "employees", "Team = " & Team)
+    getteamSIze = DCount("employeeRef", "employees", "teamRef = " & Team)
 End Function
 
 Public Function createVote(reviewerRef As Integer, recipientRef As Integer, score As Integer, comment As String, reviewerTeam As Integer, recipientTeam As Integer, reviewerTier As Integer, recipientTier As Integer, ReviewsInLast7Days As Integer, ReviewsRecievedInLast7Days As Integer, reviewerTeamSize As Integer, recieverTeamSize As Integer)
 
 Set createVote = New vote
 
-'stuff
+Dim reviewerScore As Double
     reviewerScore = getReviewerScore(ReviewsInLast7Days, reviewerTeamSize)
       
 createVote.initiateProperties reviewer:=reviewerRef, recipient:=recipientRef, score:=score, comment:=comment
@@ -72,5 +75,5 @@ Private Function getReviewerScore(ReviewsInLast7Days, reviewerTeamSize) As Doubl
 Dim Factor As Double
 Factor = 0.5
 
-    getReviewerScore = Exp(ln(Factor) / reviewerTeamSize * ReviewsInLast7Days)
+    getReviewerScore = Exp(Log(Factor) / reviewerTeamSize * ReviewsInLast7Days)
 End Function
