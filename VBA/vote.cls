@@ -16,12 +16,13 @@ Private pRawScore As Integer
 Private pWeightedScore As Double
 Private pComment As String
 
-Public Sub initiateProperties(reviewer As Integer, recipient As Integer, score As Integer, comment As String)
+Public Sub initiateProperties(reviewer As Integer, recipient As Integer, score As Integer, comment As String, weightedScore As Double)
 
 pReviewer = reviewer
 pRecipient = recipient
 pRawScore = score
 pComment = comment
+pWeightedScore = weightedScore
 
 End Sub
 
@@ -38,6 +39,8 @@ End Property
 Public Property Get comment() As String
 comment = pComment
 End Property
-
+Public Property Get weightedScore() As String
+weightedScore = pWeightedScore
+End Property
 
 

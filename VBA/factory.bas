@@ -66,14 +66,37 @@ Set createVote = New vote
 
 Dim reviewerScore As Double
     reviewerScore = getReviewerScore(ReviewsInLast7Days, reviewerTeamSize)
+Dim recieverScore As Double
+    recieverScore = getRecieverScore(ReviewsRecievedInLast7Days, recieverTeamSize)
+Dim deltaScore As Integer
+    deltaScore = getDeltaScore(reviewerTier, recipientTier)
+    
+Dim weightedScore As Double
+weightedScore = score * reviewerScore * recieverScore * deltaScore
+
       
-createVote.initiateProperties reviewer:=reviewerRef, recipient:=recipientRef, score:=score, comment:=comment
+createVote.initiateProperties reviewer:=reviewerRef, recipient:=recipientRef, score:=score, comment:=comment, weightedScore:=weightedScore
 
 End Function
 
 Private Function getReviewerScore(ReviewsInLast7Days, reviewerTeamSize) As Double
 Dim Factor As Double
+Factor = 0.9
+
+    getReviewerScore = Factor ^ (ReviewsInLast7Days)
+End Function
+
+Private Function getRecieverScore(ReviewsRecievedInLast7Days, recieverTeamSize) As Double
+Dim Factor As Double
 Factor = 0.5
 
-    getReviewerScore = Exp(Log(Factor) / reviewerTeamSize * ReviewsInLast7Days)
+End Function
+
+Private Function getDeltaScore(reviewerTier, recipientTier)
+
+If reviewerTier > recipientTier Then
+    getDeltaScore = reviewerTier - recipientTier + 1
+Else
+    getDeltaScore = recipientTier - reviewerTier + 1
+End If
 End Function
