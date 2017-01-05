@@ -24,6 +24,7 @@ pRef = Ref
 pReviewsRecievedInLast7Days = ReviewsRecievedInLast7Days
 pTeamSize = teamSize
 
+
 End Sub
 
 Public Property Get tier() As Integer

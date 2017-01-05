@@ -77,10 +77,8 @@ For i = 1 To keywordCollection.Count
     DoCmd.RunSQL (insertString)
 Next i
 
-
- 
-
 End Sub
+
 
 
 
