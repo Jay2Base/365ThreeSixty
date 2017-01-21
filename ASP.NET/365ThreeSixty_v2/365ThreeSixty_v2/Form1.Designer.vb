@@ -107,7 +107,7 @@ Partial Class Form1
         '
         'Form1
         '
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(1306, 912)

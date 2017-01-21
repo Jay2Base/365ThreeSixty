@@ -1,12 +1,7 @@
 ﻿Imports System.Data.OleDb
 
 Public Class Form1
-    Dim con As New OleDb.OleDbConnection
-    Dim dbProvider As String
-    Dim dbSource As String
-    Dim MyDocumentsFolder As String
-    Dim TheDatabase As String
-    Dim FullDatabasePath As String
+
 
     Public ds As New DataSet
     Dim da As OleDb.OleDbDataAdapter
@@ -29,46 +24,46 @@ Public Class Form1
     Public dsV As New DataSet
 
     Public Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        dbProvider = "PROVIDER=Microsoft.ACE.OLEDB.12.0;"
-        TheDatabase = "/365ThreeSixty_v2.accdb"
-        MyDocumentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-        FullDatabasePath = "C:/Users/jayra/Google Drive/365threesixty/ASP.NET/365ThreeSixty_v2" & TheDatabase
-        dbSource = "Data Source = " & FullDatabasePath
 
-        con.ConnectionString = dbProvider & dbSource
-        con.Open()
+        Dim newCon As New OleDb.OleDbConnection
+        newCon = openDbConnection()
 
+        newCon.Open()
         sql = "select employeeRef, employeeName, tier, teamRef from employees;"
-        da = New OleDb.OleDbDataAdapter(sql, con)
+        da = New OleDb.OleDbDataAdapter(sql, newCon)
         da.FillSchema(ds, SchemaType.Source)
         da.Fill(ds)
 
 
         sql = "select * from keywordDictionary;"
-        daK = New OleDb.OleDbDataAdapter(sql, con)
+        daK = New OleDb.OleDbDataAdapter(sql, newCon)
         daK.FillSchema(dsK, SchemaType.Source)
         daK.Fill(dsK)
 
         sql = "select * from reviews;"
-        daV = New OleDb.OleDbDataAdapter(sql, con)
+        daV = New OleDb.OleDbDataAdapter(sql, newCon)
         daV.FillSchema(dsV, SchemaType.Source)
 
         daV.Fill(dsV)
 
-        con.Close()
+        newCon.Close()
 
 
         txtMissionStatement.Visible = False
         btnSubmit.Visible = False
 
-        ComboBox1.DataSource = ds.Tables(0)
-        ComboBox1.DisplayMember = "employeeName"
-        ComboBox1.ValueMember = "employeeRef"
+
 
     End Sub
     Private Sub btnImportEmployees_Click(sender As Object, e As EventArgs) Handles btnImportEmployees.Click
         Dim employeeFilePath As String
         Dim dialog As New OpenFileDialog()
+        Dim con As New OleDb.OleDbConnection
+        Dim dbProvider As String
+        Dim dbSource As String
+        Dim MyDocumentsFolder As String
+        Dim TheDatabase As String
+        Dim FullDatabasePath As String
 
         If DialogResult.OK = dialog.ShowDialog Then
             employeeFilePath = Replace(dialog.FileName, "\", "/")
@@ -159,13 +154,14 @@ Public Class Form1
 
         'GET THE EXCLUSIONS FROM DB
 
-
-        con.Open()
+        Dim newCon As New OleDb.OleDbConnection
+        newCon = openDbConnection()
+        newCon.Open()
         sql = "select * from exclusions;"
-        daX = New OleDb.OleDbDataAdapter(sql, con)
+        daX = New OleDb.OleDbDataAdapter(sql, newCon)
         daX.FillSchema(dsX, SchemaType.Source)
         daX.Fill(dsX)
-        con.Close()
+        newCon.Close()
 
         'COMPARE STATEMENTS WITH EXCLUSIONS
         Dim i As Integer
