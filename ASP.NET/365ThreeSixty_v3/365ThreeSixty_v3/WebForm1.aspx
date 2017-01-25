@@ -10,16 +10,26 @@
     <form align="center" id="form1" runat="server" >
     <div>
     
-    </div>
+        Current Staff List<br />
+        (select a reviewer)</div>
         <asp:DropDownList ID="frmReviewer" runat="server">
         </asp:DropDownList>
         <br />
         <br />
-        <asp:CheckBox ID="isAdmin" runat="server" />
-&nbsp;I am an Admin<br />
+        <asp:Label ID="lblMission" runat="server" Text="Mission"></asp:Label>
+        <br />
         <br />
         <asp:Button ID="createReviewer" runat="server" Text="Start" />
-        <p>
+        &nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btnAdmin" runat="server" Text="Admin Tools" />
+        &nbsp;&nbsp;&nbsp;
+        Select File &nbsp;<asp:FileUpload ID="staffUpload" runat="server" /><br />
+        <asp:Button ID="btnUpload" runat="server" Text="Upload Staff" />
+        &nbsp;&nbsp;
+        <asp:TextBox ID="txtNewMission" runat="server" TextMode="MultiLine"></asp:TextBox>
+&nbsp;<asp:Button ID="btnUpdateValues" runat="server" Text="Update Company Values" />
+        <br />
+&nbsp;<p>
             &nbsp;</p>
         <asp:Panel ID="submitAreview" runat="server" Height="312px" Visible="false">
             <asp:DropDownList ID="frmRecipients" runat="server">

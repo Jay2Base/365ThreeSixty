@@ -1,19 +1,20 @@
-﻿Public Class WebForm1
+﻿Imports System.Data.SqlClient
+Public Class WebForm1
     Inherits System.Web.UI.Page
 
     Public ds As DataSet
-    Dim da As OleDb.OleDbDataAdapter
+    Dim da As System.Data.SqlClient.SqlDataAdapter
     Dim sql As String
     Dim tblEmployees As DataTable
 
     Public Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Dim newCon As New OleDb.OleDbConnection
+        Dim newCon As New System.Data.SqlClient.SqlConnection
         newCon = openDbConnection()
 
         newCon.Open()
         ds = New DataSet
         sql = "select employeeRef, employeeName, tier, teamRef from employees;"
-        da = New OleDb.OleDbDataAdapter(sql, newCon)
+        da = New System.Data.SqlClient.SqlDataAdapter(sql, newCon)
         da.FillSchema(ds, SchemaType.Source)
         da.Fill(ds)
         newCon.Close()
@@ -127,8 +128,8 @@
     Public Function getData()
         Dim dsV = New DataSet
         Dim Sql As String
-        Dim daV As OleDb.OleDbDataAdapter
-        Dim newCon As New OleDb.OleDbConnection
+        Dim daV As SqlClient.SqlDataAdapter
+        Dim newCon As New SqlClient.SqlConnection
 
         newCon = openDbConnection()
 
@@ -136,7 +137,7 @@
 
 
         Sql = "select * from reviews;"
-        daV = New OleDb.OleDbDataAdapter(Sql, newCon)
+        daV = New SqlClient.SqlDataAdapter(Sql, newCon)
         daV.FillSchema(dsV, SchemaType.Source)
 
         daV.Fill(dsV)
@@ -145,8 +146,27 @@
         Return dsV.Tables(0)
     End Function
 
+    Protected Sub btnAdmin_Click(sender As Object, e As EventArgs) Handles btnAdmin.Click
 
+    End Sub
 
+    Protected Sub btnUpdateValues_Click(sender As Object, e As EventArgs) Handles btnUpdateValues.Click
+        Call updateMissionStatement(txtNewMission.Text)
+        lblMission.Text = txtNewMission.Text
+        txtNewMission.Text.Remove(0)
+    End Sub
 
+    Protected Sub btnUpload_Click(sender As Object, e As EventArgs) Handles btnUpload.Click
+        Dim DefaultFileName As String
+        Dim employeeFilePath As String
+        DefaultFileName = "uploads/"
 
+        employeeFilePath = Server.MapPath(DefaultFileName) + staffUpload.FileName
+
+        staffUpload.SaveAs(employeeFilePath)
+
+        If staffUpload.HasFile Then
+            ImportEmployees(da, ds, employeeFilePath)
+        End If
+    End Sub
 End Class

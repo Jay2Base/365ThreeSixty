@@ -32,13 +32,13 @@ Partial Public Class WebForm1
     Protected WithEvents frmReviewer As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
-    '''isAdmin control.
+    '''lblMission control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents isAdmin As Global.System.Web.UI.WebControls.CheckBox
+    Protected WithEvents lblMission As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''createReviewer control.
@@ -48,6 +48,51 @@ Partial Public Class WebForm1
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents createReviewer As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''btnAdmin control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnAdmin As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''staffUpload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents staffUpload As Global.System.Web.UI.WebControls.FileUpload
+    
+    '''<summary>
+    '''btnUpload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnUpload As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''txtNewMission control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNewMission As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''btnUpdateValues control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnUpdateValues As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''submitAreview control.

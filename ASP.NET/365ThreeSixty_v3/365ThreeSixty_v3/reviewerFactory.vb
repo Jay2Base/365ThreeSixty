@@ -58,16 +58,16 @@
 
     Public Function getVotesSent(EmployeeType As String, Ref As String)
 
-        Dim newCon As New OleDb.OleDbConnection
+        Dim newCon As New SqlClient.SqlConnection
         newCon = openDbConnection()
 
         newCon.Open()
         Dim dsV = New DataSet
         Dim Sql As String
-        Dim daV As OleDb.OleDbDataAdapter
+        Dim daV As SqlClient.SqlDataAdapter
 
         Sql = "select * from reviews;"
-        daV = New OleDb.OleDbDataAdapter(Sql, newCon)
+        daV = New SqlClient.SqlDataAdapter(Sql, newCon)
         daV.FillSchema(dsV, SchemaType.Source)
 
         daV.Fill(dsV)

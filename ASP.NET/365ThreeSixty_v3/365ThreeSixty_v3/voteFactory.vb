@@ -81,16 +81,16 @@
         Next
 
         'collect keywords
-        Dim newCon As New OleDb.OleDbConnection
+        Dim newCon As New SqlClient.SqlConnection
         newCon = openDbConnection()
 
         newCon.Open()
         Dim dsK = New DataSet
         Dim Sql As String
-        Dim daK As OleDb.OleDbDataAdapter
+        Dim daK As SqlClient.SqlDataAdapter
 
         Sql = "select * from keywordDictionary;"
-        daK = New OleDb.OleDbDataAdapter(Sql, newCon)
+        daK = New SqlClient.SqlDataAdapter(Sql, newCon)
         daK.FillSchema(dsK, SchemaType.Source)
 
         daK.Fill(dsK)
@@ -130,8 +130,9 @@
     Public Sub writeVoteToDb(vote As vote)
         Dim dsV = New DataSet
         Dim Sql As String
-        Dim daV As OleDb.OleDbDataAdapter
-        Dim newCon As New OleDb.OleDbConnection
+        Dim daV As SqlClient.SqlDataAdapter
+        Dim newCon As New SqlClient.SqlConnection
+
 
         newCon = openDbConnection()
 
@@ -139,13 +140,13 @@
 
 
         Sql = "select * from reviews;"
-        daV = New OleDb.OleDbDataAdapter(Sql, newCon)
+        daV = New SqlClient.SqlDataAdapter(Sql, newCon)
         daV.FillSchema(dsV, SchemaType.Source)
 
         daV.Fill(dsV)
 
         newCon.Close()
-        Dim cb As New OleDb.OleDbCommandBuilder(daV)
+        Dim cb As New SqlClient.SqlCommandBuilder(daV)
         Dim newRow As DataRow
 
         newRow = dsV.Tables(0).NewRow()
