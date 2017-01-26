@@ -157,6 +157,7 @@
             Dim vote As New vote
             Dim handleText As String
             Dim recipientRow As DataRow()
+            Dim allTheVotes As New List(Of vote)
 
             For Each row In recipientList.Rows
                 handleText = row.item("handle")
@@ -164,12 +165,14 @@
                 recipientRef = recipientRow(0)("employeeRef")
 
                 vote = createVote(reviewerRef, recipientRef, comment, ds)
+                allTheVotes.add(vote)
+
             Next
-            writeVoteToDb(vote)
+            For Each vote In allTheVotes
+                writeVoteToDb(vote)
+            Next
 
-
-
-                Return "Thanks, your comments have been accepted"
+            Return "Thanks, your comments have been accepted"
 
         End If
     End Function
