@@ -19,18 +19,21 @@ Public Class WebForm1
         da.Fill(ds)
         newCon.Close()
 
-        frmReviewer.DataSource = ds.Tables(0)
-        frmReviewer.DataTextField = "employeeName"
-        frmReviewer.DataValueField = "employeeRef"
-        frmReviewer.DataBind()
+        Session("Sds") = ds
 
+        If Not (Page.IsPostBack) Then
+            frmReviewer.DataSource = ds.Tables(0)
+            frmReviewer.DataTextField = "employeeName"
+            frmReviewer.DataValueField = "employeeRef"
+            frmReviewer.DataBind()
+        End If
         updateTable()
     End Sub
 
     Public Sub createReviewer_Click(sender As Object, e As EventArgs) Handles createReviewer.Click
         'get list of everyone else into datatable
         'populate recipient list
-        Dim thisRef = frmReviewer.SelectedValue.ToString
+        Dim thisRef = frmReviewer.SelectedValue
 
         Dim recipientTable As New DataTable
 
@@ -46,56 +49,17 @@ Public Class WebForm1
         'create reviewer class
         Dim reviewer As New reviewer
         reviewer = reviewerFactory.createReviewer(thisRef, ds)
+        Session("reviewer") = reviewer
 
-        'populate recipient dropdown
-        frmRecipients.DataSource = recipientTable
-        frmRecipients.DataTextField = "Name"
-        frmRecipients.DataValueField = "Ref"
-        frmRecipients.DataBind()
+        Server.Transfer("WebForm2.aspx")
 
-        submitAreview.Visible = True
-        '##todo. add admin property to class to control who can see what
+
 
 
 
     End Sub
 
-    Protected Sub Button1_Click(sender As Object, e As EventArgs) Handles frmSubmitReview.Click
-        'create vote class
-        Dim reviewerRef As String
-        Dim recipientRef As String
-        Dim recipientList As New DataTable
 
-        recipientList = getRecipients(frmComment.Text)
-
-        reviewerRef = frmReviewer.SelectedValue
-
-
-
-        Dim comment As String
-        comment = frmComment.Text
-
-        Dim vote As New vote
-        Dim handleText As String
-        Dim recipientRow As DataRow()
-
-        For Each row In recipientList.Rows
-            handleText = row.item("handle")
-            recipientRow = ds.Tables(0).Select("handle = '" & handleText & "'")
-            recipientRef = recipientRow(0)("employeeRef")
-
-            vote = createVote(reviewerRef, recipientRef, comment, ds)
-
-            writeVoteToDb(vote)
-        Next
-
-        PlaceHolder1.Controls.Clear()
-        updateTable()
-
-        'Response.Redirect(Request.RawUrl)
-
-
-    End Sub
 
 
     Public Sub updateTable()

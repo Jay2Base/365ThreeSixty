@@ -15,7 +15,7 @@
         <asp:TextBox ID="txtNewComment" runat="server" TextMode="MultiLine" Width="1909px"></asp:TextBox>
         <asp:Button ID="btnchatComment" runat="server" Text="comment" />
     </form>
-    
+ <a href="WebForm1.aspx">back to dashboard</a>   
  
 </body>
 </html>

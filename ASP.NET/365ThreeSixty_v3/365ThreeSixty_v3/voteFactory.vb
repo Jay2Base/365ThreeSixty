@@ -166,6 +166,6 @@
         dsV.Tables(0).Rows.Add(newRow)
         daV.Update(dsV)
 
-        MsgBox("Feedback has been recieved, thanks.")
+
     End Sub
 End Module

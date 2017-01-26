@@ -29,21 +29,7 @@
         <asp:TextBox ID="txtNewMission" runat="server" TextMode="MultiLine"></asp:TextBox>
 &nbsp;<asp:Button ID="btnUpdateValues" runat="server" Text="Update Company Values" />
         <br />
-&nbsp;<p>
-            &nbsp;</p>
-        <asp:Panel ID="submitAreview" runat="server" Height="312px" Visible="false">
-            <asp:DropDownList ID="frmRecipients" runat="server">
-            </asp:DropDownList>
-            <br />
-            <br />
-            <asp:TextBox ID="frmComment" runat="server" TextMode="MultiLine"></asp:TextBox>
-            <br />
-            <br />
-            <asp:Button ID="frmSubmitReview" runat="server" Text="Submit Review" />
-            <br />
-        </asp:Panel>
-        
-    </form>
+&nbsp;</form>
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
 </body>
 </html>

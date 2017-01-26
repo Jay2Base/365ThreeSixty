@@ -95,42 +95,6 @@ Partial Public Class WebForm1
     Protected WithEvents btnUpdateValues As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''submitAreview control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents submitAreview As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''frmRecipients control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents frmRecipients As Global.System.Web.UI.WebControls.DropDownList
-    
-    '''<summary>
-    '''frmComment control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents frmComment As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''frmSubmitReview control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents frmSubmitReview As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
     '''PlaceHolder1 control.
     '''</summary>
     '''<remarks>
