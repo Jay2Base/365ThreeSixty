@@ -29,7 +29,7 @@
 
         Dim cb As New SqlClient.SqlCommandBuilder(da)
 
-        'empty the table
+        'empty the table    
         For Each row In ds.Tables(0).Rows
             row.delete()
         Next
@@ -46,6 +46,7 @@
             dsNewRow.Item("employeeName") = row.Item("employeeName")
             dsNewRow.Item("tier") = row.Item("tier")
             dsNewRow.Item("teamRef") = row.Item("teamRef")
+            dsNewRow.Item("handle") = row.item("Handle")
 
             ds.Tables(0).Rows.Add(dsNewRow)
 

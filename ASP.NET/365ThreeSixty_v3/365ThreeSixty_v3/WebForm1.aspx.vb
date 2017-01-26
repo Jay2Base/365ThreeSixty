@@ -13,7 +13,7 @@ Public Class WebForm1
 
         newCon.Open()
         ds = New DataSet
-        sql = "select employeeRef, employeeName, tier, teamRef from employees;"
+        sql = "select employeeRef, employeeName, tier, teamRef, handle from employees;"
         da = New System.Data.SqlClient.SqlDataAdapter(sql, newCon)
         da.FillSchema(ds, SchemaType.Source)
         da.Fill(ds)
@@ -64,16 +64,30 @@ Public Class WebForm1
         'create vote class
         Dim reviewerRef As String
         Dim recipientRef As String
+        Dim recipientList As New DataTable
 
+        recipientList = getRecipients(frmComment.Text)
 
         reviewerRef = frmReviewer.SelectedValue
-        recipientRef = frmRecipients.SelectedValue
+
+
+
         Dim comment As String
         comment = frmComment.Text
 
         Dim vote As New vote
-        vote = createVote(reviewerRef, recipientRef, comment, ds)
-        writeVoteToDb(vote)
+        Dim handleText As String
+        Dim recipientRow As DataRow()
+
+        For Each row In recipientList.Rows
+            handleText = row.item("handle")
+            recipientRow = ds.Tables(0).Select("handle = '" & handleText & "'")
+            recipientRef = recipientRow(0)("employeeRef")
+
+            vote = createVote(reviewerRef, recipientRef, comment, ds)
+
+            writeVoteToDb(vote)
+        Next
 
         PlaceHolder1.Controls.Clear()
         updateTable()
@@ -169,4 +183,5 @@ Public Class WebForm1
             ImportEmployees(da, ds, employeeFilePath)
         End If
     End Sub
+
 End Class

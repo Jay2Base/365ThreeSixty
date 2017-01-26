@@ -422,6 +422,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.vb" />
+    <Compile Include="commentFactory.vb" />
     <Compile Include="sqlControl.vb" />
     <Compile Include="sqlDbConnection.vb" />
     <Compile Include="updateEmployees.vb" />
