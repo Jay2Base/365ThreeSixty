@@ -14,20 +14,38 @@ Option Explicit On
 Partial Public Class WebForm2
     
     '''<summary>
-    '''GridView1 control.
+    '''form1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
     
     '''<summary>
-    '''SqlDataSource1 control.
+    '''chatWindow control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents SqlDataSource1 As Global.System.Web.UI.WebControls.SqlDataSource
+    Protected WithEvents chatWindow As Global.System.Web.UI.WebControls.PlaceHolder
+    
+    '''<summary>
+    '''txtNewComment control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNewComment As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''btnchatComment control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnchatComment As Global.System.Web.UI.WebControls.Button
 End Class
