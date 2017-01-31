@@ -33,6 +33,17 @@ Public Class WebForm1
     Public Sub createReviewer_Click(sender As Object, e As EventArgs) Handles createReviewer.Click
         'get list of everyone else into datatable
         'populate recipient list
+        createNewReviewer()
+        createReviewer.PostBackUrl = "~/Chat_Demo.aspx"
+
+        Response.Redirect("Chat_Demo.aspx")
+
+
+
+
+
+    End Sub
+    Sub createNewReviewer()
         Dim thisRef = frmReviewer.SelectedValue
 
         Dim recipientTable As New DataTable
@@ -50,15 +61,7 @@ Public Class WebForm1
         Dim reviewer As New reviewer
         reviewer = reviewerFactory.createReviewer(thisRef, ds)
         Session("reviewer") = reviewer
-
-        Server.Transfer("Chat_Demo.aspx")
-
-
-
-
-
     End Sub
-
 
 
 

@@ -1,31 +1,9 @@
-﻿Public Class Chat_Demo
-    Inherits System.Web.UI.Page
-
+﻿Module SlackishFactory
     Public commentTable As DataTable
     Public ds As DataSet
     Public reviewer As reviewer
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        'get all the goodies in from the session
-
-        commentTable = Session("commentTable")
-
-        If Not (Page.IsPostBack) Then
-            If commentTable Is Nothing Then
-                commentTable = initialiseTable()
-            End If
-            redrawTable(commentTable)
-            Session("commentTable") = commentTable
-        End If
-        ds = Session("Sds")
-        reviewer = Session("reviewer")
-
-
-    End Sub
-
-
-
-    Private Sub drawCommentTable(newComment As String, commentTable As DataTable)
+    Public Sub drawCommentTable(newComment As String, commentTable As DataTable)
 
         Dim moveMeUp As String
 
@@ -39,18 +17,7 @@
 
         commentTable.Rows(commentTable.Rows.Count - 1).Item("comments") = newComment
 
-        Session("commentTable") = commentTable
 
-        redrawTable(commentTable)
-    End Sub
-
-    Protected Sub btnchatComment_Click(sender As Object, e As EventArgs) Handles btnchatComment.Click
-        Debug.Write("hit point A")
-        Dim newComment As String
-        newComment = captureReviewAndRespond(txtNewComment.Text)
-
-        drawCommentTable(newComment, commentTable)
-        Debug.Write("hit point B")
     End Sub
     Public Function initialiseTable() As DataTable
         'initialise comment table with blanks
@@ -69,8 +36,7 @@
 
         Return commentTable
     End Function
-
-    Sub redrawTable(commentTable As DataTable)
+    Public Function redrawTable(commentTable As DataTable)
 
         'Building an HTML string.
         Dim html As New StringBuilder()
@@ -102,11 +68,9 @@
         html.Append("</table>")
 
         'Append the HTML string to Placeholder.
-        chatWindow.Controls.Add(New Literal() With {
-          .Text = html.ToString()
-        })
+        Return html
         'End If
-    End Sub
+    End Function
 
     Public Function captureReviewAndRespond(newComment As String) As String
         'check comment for tag and return newComment unscathed
@@ -181,4 +145,4 @@
 
         End If
     End Function
-End Class
+End Module
