@@ -33,6 +33,7 @@ Module parseKeywords
         Dim newRow As DataRow
         newRow = dsM.Tables(0).NewRow()
         newRow.Item("mission") = mission
+        newRow.Item("id") = 1
         dsM.Tables(0).Rows.Add(newRow)
         daM.Update(dsM)
 
