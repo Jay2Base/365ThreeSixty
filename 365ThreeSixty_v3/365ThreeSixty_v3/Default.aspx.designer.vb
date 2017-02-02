@@ -32,6 +32,15 @@ Partial Public Class WebForm1
     Protected WithEvents lblMission As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''LinkButton1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LinkButton1 As Global.System.Web.UI.WebControls.LinkButton
+    
+    '''<summary>
     '''frmReviewer control.
     '''</summary>
     '''<remarks>
@@ -113,15 +122,6 @@ Partial Public Class WebForm1
     Protected WithEvents Chart2 As Global.System.Web.UI.DataVisualization.Charting.Chart
     
     '''<summary>
-    '''PlaceHolder1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents PlaceHolder1 As Global.System.Web.UI.WebControls.PlaceHolder
-    
-    '''<summary>
     '''AveReviewData control.
     '''</summary>
     '''<remarks>
@@ -129,4 +129,22 @@ Partial Public Class WebForm1
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents AveReviewData As Global.System.Web.UI.WebControls.SqlDataSource
+    
+    '''<summary>
+    '''GridView1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''SqlDataSource1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents SqlDataSource1 As Global.System.Web.UI.WebControls.SqlDataSource
 End Class

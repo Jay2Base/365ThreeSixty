@@ -16,13 +16,10 @@
             End If
             redrawTable(commentTable)
             Session("commentTable") = commentTable
-            ds = Session("Sds")
-            drawEmployeeList(ds.Tables(0))
-            reviewer = Session("reviewer")
-
         End If
-
-
+        ds = Session("Sds")
+        drawEmployeeList(ds.Tables(0))
+        reviewer = Session("reviewer")
 
     End Sub
 
