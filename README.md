@@ -21,6 +21,7 @@
 
 ###TO DO##
 
+* Do tests and shit
 * Add API to accept slack integration
 * Modify so that instance is unique to users (logons, keys etc)
 * Write Kick ass demo
