@@ -6,18 +6,25 @@ Public Class WebForm1
     Dim da As System.Data.SqlClient.SqlDataAdapter
     Dim sql As String
     Dim tblEmployees As DataTable
+    Private daM As New SqlDataAdapter
+    Private dsM As New DataSet
 
     Public Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim newCon As New System.Data.SqlClient.SqlConnection
         newCon = openDbConnection()
 
-        newCon.Open()
+        'newCon.Open()
         ds = New DataSet
         sql = "select employeeRef, employeeName, tier, teamRef, handle from employees;"
         da = New System.Data.SqlClient.SqlDataAdapter(sql, newCon)
         da.FillSchema(ds, SchemaType.Source)
         da.Fill(ds)
-        newCon.Close()
+
+        sql = "select * from mission;"
+        daM = New SqlClient.SqlDataAdapter(sql, newCon)
+        daM.FillSchema(dsM, SchemaType.Source)
+        daM.Fill(dsM)
+        'newCon.Close()
 
         Session("Sds") = ds
 
@@ -26,6 +33,10 @@ Public Class WebForm1
             frmReviewer.DataTextField = "employeeName"
             frmReviewer.DataValueField = "employeeRef"
             frmReviewer.DataBind()
+
+            If dsM.Tables(0).Rows.Count > 0 Then
+                lblMission.Text = dsM.Tables(0).Rows(0).Item("mission").ToString
+            End If
         End If
         updateTable()
     End Sub

@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Default.aspx.vb" Inherits="_365ThreeSixty_v3.WebForm1" %>
 
+<%@ Register assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" namespace="System.Web.UI.DataVisualization.Charting" tagprefix="asp" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -34,7 +36,7 @@
     <!-- Page Content -->
 <div class="container">
 
-        <form align="left" id="form1" runat="server" >
+        <form id="form1" runat="server" >
         <!-- Portfolio Item Heading -->
         <div class="row">
             <div class="col-lg-12">
@@ -87,8 +89,38 @@
             </div>
 
             <div class="col-lg-12">
+                <h2>Employee Total Scores</h2>
+                    <asp:Chart ID="Chart1" runat="server" DataSourceID="reviewData" Width="1096px">
+                        <series>
+                            <asp:Series Name="Series1" XValueMember="employeeName" YValueMembers="score">
+                            </asp:Series>
+                        </series>
+                        <chartareas>
+                            <asp:ChartArea Name="ChartArea1">
+                            </asp:ChartArea>
+                        </chartareas>
+                    </asp:Chart>
+                    <asp:SqlDataSource ID="reviewData" runat="server" ConnectionString="<%$ ConnectionStrings:365ThreeSixtyConnectionString1 %>" SelectCommand="SELECT employees.employeeName, SUM(reviews.weightedScore) AS score FROM employees INNER JOIN reviews ON employees.employeeRef = reviews.recipientRef GROUP BY employees.employeeName"></asp:SqlDataSource>
+                    <br />
+                    <br />
+                    <br />
                 
-                    &nbsp;<asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+                <h2>Employee Average Score</h2>
+                    &nbsp;<asp:Chart ID="Chart2" runat="server" DataSourceID="AveReviewData" Width="922px">
+                    <series>
+                        <asp:Series Name="Series1" XValueMember="employeeName" YValueMembers="Average Score">
+                        </asp:Series>
+                    </series>
+                    <chartareas>
+                        <asp:ChartArea Name="ChartArea1">
+                        </asp:ChartArea>
+                    </chartareas>
+                </asp:Chart>
+                <br />
+                <br />
+                <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+               
+                <asp:SqlDataSource ID="AveReviewData" runat="server" ConnectionString="<%$ ConnectionStrings:365ThreeSixtyConnectionString1 %>" SelectCommand="SELECT employees.employeeName, AVG(reviews.weightedScore) AS [Average Score] FROM employees INNER JOIN reviews ON employees.employeeRef = reviews.recipientRef GROUP BY employees.employeeName"></asp:SqlDataSource>
                
             </div>
 
@@ -102,6 +134,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="scripts/bootstrap.min.js"></script>
+
 
 </body>
 </html>

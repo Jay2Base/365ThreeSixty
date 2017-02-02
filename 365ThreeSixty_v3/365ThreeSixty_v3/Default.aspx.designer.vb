@@ -86,6 +86,33 @@ Partial Public Class WebForm1
     Protected WithEvents btnUpdateValues As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
+    '''Chart1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Chart1 As Global.System.Web.UI.DataVisualization.Charting.Chart
+    
+    '''<summary>
+    '''reviewData control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents reviewData As Global.System.Web.UI.WebControls.SqlDataSource
+    
+    '''<summary>
+    '''Chart2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Chart2 As Global.System.Web.UI.DataVisualization.Charting.Chart
+    
+    '''<summary>
     '''PlaceHolder1 control.
     '''</summary>
     '''<remarks>
@@ -93,4 +120,13 @@ Partial Public Class WebForm1
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents PlaceHolder1 As Global.System.Web.UI.WebControls.PlaceHolder
+    
+    '''<summary>
+    '''AveReviewData control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents AveReviewData As Global.System.Web.UI.WebControls.SqlDataSource
 End Class
