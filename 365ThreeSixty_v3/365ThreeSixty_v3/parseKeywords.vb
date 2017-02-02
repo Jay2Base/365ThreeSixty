@@ -3,6 +3,8 @@ Module parseKeywords
     Sub updateMissionStatement(mission As String)
         Dim daK As SqlClient.SqlDataAdapter
         Dim dsK As New DataSet
+        Dim daM As SqlClient.SqlDataAdapter
+        Dim dsM As New DataSet
         Dim sql As String
         Dim newCon As SqlClient.SqlConnection
 
@@ -13,11 +15,33 @@ Module parseKeywords
         daK.FillSchema(dsK, SchemaType.Source)
         daK.Fill(dsK)
 
+        sql = "select * from mission;"
+        daM = New SqlClient.SqlDataAdapter(sql, newCon)
+        daM.FillSchema(dsM, SchemaType.Source)
+        daM.Fill(dsM)
+
         newCon.Close()
+
+        'add mission to db
+        Dim cb As New SqlClient.SqlCommandBuilder(daM)
+
+        For Each row In dsM.Tables(0).Rows
+            row.delete()
+        Next
+        daM.Update(dsM)
+
+        Dim newRow As DataRow
+        newRow = dsM.Tables(0).NewRow()
+        newRow.Item("mission") = mission
+        newRow.Item("id") = 1
+        dsM.Tables(0).Rows.Add(newRow)
+        daM.Update(dsM)
 
         'clear down existing mission keywords
 
-        Dim cb As New SqlClient.SqlCommandBuilder(daK)
+
+
+        cb = New SqlClient.SqlCommandBuilder(daK)
         For Each row In dsK.Tables(0).Rows
             row.delete()
         Next
@@ -37,7 +61,7 @@ Module parseKeywords
         Dim keywordArray As String() = statement.Split(" ")
 
         Dim keywordTable As New DataTable
-        Dim newRow As DataRow
+
         keywordTable.Columns.Add("keywords")
         For Each item In keywordArray
 

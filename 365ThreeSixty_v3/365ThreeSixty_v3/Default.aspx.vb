@@ -6,18 +6,25 @@ Public Class WebForm1
     Dim da As System.Data.SqlClient.SqlDataAdapter
     Dim sql As String
     Dim tblEmployees As DataTable
+    Private daM As New SqlDataAdapter
+    Private dsM As New DataSet
 
     Public Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim newCon As New System.Data.SqlClient.SqlConnection
         newCon = openDbConnection()
 
-        newCon.Open()
+        'newCon.Open()
         ds = New DataSet
         sql = "select employeeRef, employeeName, tier, teamRef, handle from employees;"
         da = New System.Data.SqlClient.SqlDataAdapter(sql, newCon)
         da.FillSchema(ds, SchemaType.Source)
         da.Fill(ds)
-        newCon.Close()
+
+        sql = "select * from mission;"
+        daM = New SqlClient.SqlDataAdapter(sql, newCon)
+        daM.FillSchema(dsM, SchemaType.Source)
+        daM.Fill(dsM)
+        'newCon.Close()
 
         Session("Sds") = ds
 
@@ -26,8 +33,13 @@ Public Class WebForm1
             frmReviewer.DataTextField = "employeeName"
             frmReviewer.DataValueField = "employeeRef"
             frmReviewer.DataBind()
+
+
         End If
-        updateTable()
+        If dsM.Tables(0).Rows.Count > 0 Then
+            lblMission.Text = dsM.Tables(0).Rows(0).Item("mission").ToString
+        End If
+
     End Sub
 
     Public Sub createReviewer_Click(sender As Object, e As EventArgs) Handles createReviewer.Click
@@ -65,46 +77,7 @@ Public Class WebForm1
 
 
 
-    Public Sub updateTable()
-        'If Not Me.IsPostBack Then
-        'Populating a DataTable from database.
-        Dim dt As DataTable = Me.getData()
 
-            'Building an HTML string.
-            Dim html As New StringBuilder()
-
-            'Table start.
-            html.Append("<table border = '1'>")
-
-            'Building the Header row.
-            html.Append("<tr>")
-            For Each column As DataColumn In dt.Columns
-                html.Append("<th>")
-                html.Append(column.ColumnName)
-                html.Append("</th>")
-            Next
-            html.Append("</tr>")
-
-            'Building the Data rows.
-            For Each row As DataRow In dt.Rows
-                html.Append("<tr>")
-                For Each column As DataColumn In dt.Columns
-                    html.Append("<td>")
-                    html.Append(row(column.ColumnName))
-                    html.Append("</td>")
-                Next
-                html.Append("</tr>")
-            Next
-
-            'Table end.
-            html.Append("</table>")
-
-            'Append the HTML string to Placeholder.
-            PlaceHolder1.Controls.Add(New Literal() With {
-          .Text = html.ToString()
-        })
-        'End If
-    End Sub
 
     Public Function getData()
         Dim dsV = New DataSet
@@ -149,4 +122,7 @@ Public Class WebForm1
         End If
     End Sub
 
+    Private Sub LinkButton1_Click(sender As Object, e As EventArgs) Handles LinkButton1.Click
+        Call doFreshStart()
+    End Sub
 End Class

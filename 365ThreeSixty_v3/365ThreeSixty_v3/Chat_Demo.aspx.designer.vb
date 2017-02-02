@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class Chat_Demo
     
     '''<summary>
+    '''userList control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents userList As Global.System.Web.UI.WebControls.PlaceHolder
+    
+    '''<summary>
     '''form1 control.
     '''</summary>
     '''<remarks>

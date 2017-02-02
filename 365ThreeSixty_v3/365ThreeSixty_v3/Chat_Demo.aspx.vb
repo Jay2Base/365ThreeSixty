@@ -18,8 +18,8 @@
             Session("commentTable") = commentTable
         End If
         ds = Session("Sds")
+        drawEmployeeList(ds.Tables(0))
         reviewer = Session("reviewer")
-
 
     End Sub
 
@@ -45,12 +45,12 @@
     End Sub
 
     Protected Sub btnchatComment_Click(sender As Object, e As EventArgs) Handles btnchatComment.Click
-        Debug.Write("hit point A")
+
         Dim newComment As String
         newComment = captureReviewAndRespond(txtNewComment.Text)
 
         drawCommentTable(newComment, commentTable)
-        Debug.Write("hit point B")
+        txtNewComment.Text = ""
     End Sub
     Public Function initialiseTable() As DataTable
         'initialise comment table with blanks
@@ -61,9 +61,19 @@
 
         commentTable.Columns.Add("comments")
 
-        For x = 1 To 5
+
+
+        For x = 1 To 12
             newRow = commentTable.NewRow
-            newRow("comments") = x.ToString
+            If x = 1 Then
+                newRow("comments") = "add some comments"
+            ElseIf x = 2 Then
+                newRow("comments") = "To leave a review type /360 then tag your recipient using @[recipient]"
+            Else
+                newRow("comments") = "| "
+            End If
+
+
             commentTable.Rows.Add(newRow)
         Next
 
@@ -76,7 +86,7 @@
         Dim html As New StringBuilder()
 
         'Table start.
-        html.Append("<table border = '1'>")
+        html.Append("<table border = '0' width = '100%'>")
 
         'Building the Header row.
         html.Append("<tr>")
@@ -181,4 +191,31 @@
 
         End If
     End Function
+
+    Public Sub drawEmployeeList(emps As DataTable)
+
+        'Building an HTML string.
+        Dim html As New StringBuilder()
+
+        'already in list
+
+
+
+        'Building the Data rows.
+        For Each row As DataRow In emps.Rows
+
+            html.Append("<li>")
+            html.Append("<a onClick='insertUser(this)' href='javascript:void(0)'>")
+            html.Append(row("handle"))
+            html.Append("</a>")
+            html.Append("</li>")
+
+        Next
+
+
+        'Append the HTML string to Placeholder.
+        userList.Controls.Add(New Literal() With {
+          .Text = html.ToString()
+        })
+    End Sub
 End Class
