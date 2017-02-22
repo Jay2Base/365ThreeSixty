@@ -234,17 +234,22 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\createAccountController.cs" />
     <Compile Include="Controllers\employeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\missionsController.cs" />
     <Compile Include="Controllers\recipientController.cs" />
     <Compile Include="Controllers\reviewerController.cs" />
+    <Compile Include="Controllers\submitVoteController.cs" />
+    <Compile Include="Controllers\userAccountsController.cs" />
     <Compile Include="Controllers\voteResponseController.cs" />
     <Compile Include="Controllers\votesController.cs" />
+    <Compile Include="Factories\fuzzyMatch.cs" />
     <Compile Include="Factories\idPlusOne.cs" />
     <Compile Include="Factories\missionFactory.cs" />
     <Compile Include="Factories\recipientFactory.cs" />
     <Compile Include="Factories\reviewerFactory.cs" />
+    <Compile Include="Factories\userAccountFactory.cs" />
     <Compile Include="Factories\voteFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -261,8 +266,22 @@
     <Compile Include="Migrations\201702161111296_missions.Designer.cs">
       <DependentUpon>201702161111296_missions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702171818383_addedVoteDateTime.cs" />
+    <Compile Include="Migrations\201702171818383_addedVoteDateTime.Designer.cs">
+      <DependentUpon>201702171818383_addedVoteDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702211110233_addAccountTable.cs" />
+    <Compile Include="Migrations\201702211110233_addAccountTable.Designer.cs">
+      <DependentUpon>201702211110233_addAccountTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702211117217_add-accountId.cs" />
+    <Compile Include="Migrations\201702211117217_add-accountId.Designer.cs">
+      <DependentUpon>201702211117217_add-accountId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
+    <Compile Include="Models\newVote.cs" />
+    <Compile Include="Models\userAccount.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\employee.cs" />
     <Compile Include="Models\exclusions.cs" />
@@ -283,9 +302,11 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Factories\fuzzyMatch.vb" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -318,6 +339,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-3.4.1.debug.js" />
+    <Content Include="Scripts\knockout-3.4.1.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -357,6 +380,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702161111296_missions.resx">
       <DependentUpon>201702161111296_missions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702171818383_addedVoteDateTime.resx">
+      <DependentUpon>201702171818383_addedVoteDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702211110233_addAccountTable.resx">
+      <DependentUpon>201702211110233_addAccountTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702211117217_add-accountId.resx">
+      <DependentUpon>201702211117217_add-accountId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

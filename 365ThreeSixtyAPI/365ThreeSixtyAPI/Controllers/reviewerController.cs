@@ -13,10 +13,10 @@ namespace _365ThreeSixtyAPI.Controllers
     {
         // GET: api/reviewer
        
-        public reviewer Get(string email)
+        public reviewer Get(string email,string accountId)
         {
             reviewerFactory r = new reviewerFactory();
-                return r.createReviewer(email);
+                return r.createReviewer(email,accountId);
         }
 
         // GET: api/reviewer/5

@@ -9,5 +9,6 @@ namespace _365ThreeSixtyAPI.Models
     {
         public int Id { get; set; }
         public string keyword { get; set; }
+        public string UserAccountId { get; set; }
     }
 }

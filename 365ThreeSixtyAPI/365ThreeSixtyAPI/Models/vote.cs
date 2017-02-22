@@ -21,5 +21,7 @@ namespace _365ThreeSixtyAPI.Models
     public double reviewerScore { get; set; }
     public double recipientFactor { get; set; }
     public double recipientScore { get; set; }
+    public DateTime voteSubmittedAt { get; set; }
+    public string userAccountId { get; set; }
     }
 }

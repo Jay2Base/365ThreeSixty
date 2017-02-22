@@ -20,7 +20,9 @@ namespace _365ThreeSixtyAPI.Controllers
         // GET: api/votes
         public IQueryable<vote> Getvote()
         {
-            return db.vote;
+           
+                return db.vote;
+              
         }
 
         // GET: api/votes/5
@@ -36,71 +38,7 @@ namespace _365ThreeSixtyAPI.Controllers
             return Ok(vote);
         }
 
-        // PUT: api/votes/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> Putvote(int id, vote vote)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != vote.id)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(vote).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!voteExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/votes
-        [ResponseType(typeof(vote))]
-        public async Task<IHttpActionResult> Postvote(vote vote)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.vote.Add(vote);
-            await db.SaveChangesAsync();
-
-            return CreatedAtRoute("DefaultApi", new { id = vote.id }, vote);
-        }
-
-        // DELETE: api/votes/5
-        [ResponseType(typeof(vote))]
-        public async Task<IHttpActionResult> Deletevote(int id)
-        {
-            vote vote = await db.vote.FindAsync(id);
-            if (vote == null)
-            {
-                return NotFound();
-            }
-
-            db.vote.Remove(vote);
-            await db.SaveChangesAsync();
-
-            return Ok(vote);
-        }
+        
 
         protected override void Dispose(bool disposing)
         {

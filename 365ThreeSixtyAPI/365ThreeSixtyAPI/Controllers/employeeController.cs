@@ -19,9 +19,12 @@ namespace _365ThreeSixtyAPI.Controllers
         private _365ThreeSixtyAPIContext db = new _365ThreeSixtyAPIContext();
 
         // GET: api/employee
-        public IQueryable<employee> Getemployee()
+        public IQueryable<employee> Getemployee(string userAccountId)
         {
-            return db.employee;
+                
+
+                return db.employee.Where(x => x.UserAccountId == userAccountId);
+        
         }
 
 

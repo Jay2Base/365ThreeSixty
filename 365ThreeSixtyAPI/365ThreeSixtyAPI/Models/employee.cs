@@ -9,6 +9,7 @@
         public int team { get; set; }
         public string handle { get; set; }
         public string email { get; set; }
+        public string UserAccountId { get; set; }
     }
 }
 

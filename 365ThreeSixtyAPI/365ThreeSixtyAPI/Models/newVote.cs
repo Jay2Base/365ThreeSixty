@@ -5,11 +5,11 @@ using System.Web;
 
 namespace _365ThreeSixtyAPI.Models
 {
-    public class voteResponse
+    public class newVote
     {
-        public string voteMessage  { get; set; }
-        public string reviewer { get; set; }
+        public string reviewer { get; set;}
         public string recipient { get; set; }
-        public string UserAccountId { get; set; }
+        public string comment { get; set; }
+        public string userAccountId { get; set; }
     }
 }

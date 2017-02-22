@@ -9,5 +9,6 @@ namespace _365ThreeSixtyAPI.Models
     {
         public int id { get; set; }
         public string missionStatement { get; set; }
+        public string UserAccountId { get; set; }
     }
 }

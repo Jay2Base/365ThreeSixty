@@ -12,10 +12,10 @@ namespace _365ThreeSixtyAPI.Controllers
     public class recipientController : ApiController
     {
         // GET: api/recipient
-        public recipient Get(string email)
+        public recipient Get(string email,string accountId)
         {
             recipientFactory r = new recipientFactory();
-                return r.createRecipient(email);
+                return r.createRecipient(email,accountId);
         }
 
         

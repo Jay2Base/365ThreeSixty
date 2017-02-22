@@ -24,5 +24,7 @@ namespace _365ThreeSixtyAPI.Models
         public System.Data.Entity.DbSet<_365ThreeSixtyAPI.Models.mission> mission { get; set; }
         public System.Data.Entity.DbSet<_365ThreeSixtyAPI.Models.keywordDictionary> keywordDictionary { get; set; }
         public System.Data.Entity.DbSet<_365ThreeSixtyAPI.Models.exclusions> exclusions { get; set; }
+
+        public System.Data.Entity.DbSet<_365ThreeSixtyAPI.Models.userAccount> userAccounts { get; set; }
     }
 }

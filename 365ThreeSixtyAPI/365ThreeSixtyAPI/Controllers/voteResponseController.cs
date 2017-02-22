@@ -23,13 +23,13 @@ namespace _365ThreeSixtyAPI.Controllers
         }
 
         // GET: api/vote?{reviewer={email}&recipient={email}
-        public voteResponse Getvote(string reviewer, string recipient, string comment)
+        public voteResponse Getvote(string reviewer, string recipient, string comment,string accountId)
         {
             voteResponse vote = new Models.voteResponse();
             vote.reviewer = reviewer;
             vote.recipient = recipient;
             voteFactory v = new voteFactory();
-            vote.voteMessage = v.createVote(reviewer, recipient, comment);
+            //vote.voteMessage = v.createVote(reviewer, recipient, comment,accountId);
 
             return vote;
         }
