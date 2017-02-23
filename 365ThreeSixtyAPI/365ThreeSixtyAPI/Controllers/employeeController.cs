@@ -24,6 +24,8 @@ namespace _365ThreeSixtyAPI.Controllers
                 
 
                 return db.employee.Where(x => x.UserAccountId == userAccountId);
+            
+                
         
         }
 

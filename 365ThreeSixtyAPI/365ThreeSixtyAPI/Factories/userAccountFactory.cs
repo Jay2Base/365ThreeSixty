@@ -11,7 +11,7 @@ namespace _365ThreeSixtyAPI.Factories
 
     {
         public _365ThreeSixtyAPIContext db = new _365ThreeSixtyAPIContext();
-        public string setUpUserAccount(string accountName, string accountEmail, string accountContact)
+        public userAccount setUpUserAccount(string accountName, string accountEmail, string accountContact)
         {
             userAccount u = new userAccount();
 
@@ -23,7 +23,7 @@ namespace _365ThreeSixtyAPI.Factories
             db.userAccounts.Add(u);
             db.SaveChanges();
 
-            return u.id.ToString();
+            return u;
 
 
         }

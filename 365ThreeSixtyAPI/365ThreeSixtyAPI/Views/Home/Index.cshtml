@@ -6,30 +6,92 @@
     <h1>employee Service</h1>
 </div>
 
-<div class="row">
 
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h2 class="panel-title">Employees</h2>
-            </div>
-            <div class="panel-body">
-                <ul class="list-unstyled" data-bind="foreach: employees">
-                    <li>
-                        <strong><span data-bind="text: firstName"></span></strong>: <span data-bind="text: email"></span>
-                        <small><a href="#">Details</a></small>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
-    </div>
+<div class="row" data-ng-app="APIModule" ng-controller="APIController">
 
-    <div class="col-md-4">
-        <!-- TODO: Book details -->
-    </div>
+    <!--create a new user-->
+    <div class="col-md-4" >
+   
+    <div id="newUser">
+        <div class="form-group">
+            <label for="accName">Create Your Account</label>
+            <input type="text" class="form-control" id="accName" placeholder="Enter Account Name" [required="string" ] data-ng-model="accName" />
+            <input type="email" class="form-control" id="accEmail" placeholder="Enter Account Email" [required="string" ] data-ng-model="accEmail" />
+            <input type="text" class="form-control" id="accContact" placeholder="Enter Account Contact Name" [required="string" ] data-ng-model="accContact" />
+         </div>
+        <button type="button" class="btn btn-default" data-ng-click="createAccount();">Submit</button>
+        <table>
 
-    <div class="col-md-4">
-        <!-- TODO: Add new book -->
+            <tbody >
+                <tr>
+                    <td>Your API key is:<br/>
+                    {{account.id}}</td>
+
+                </tr>
+            </tbody>
+
+        </table>
+
     </div>
 </div>
+
+    <!--create a new mission-->
+    <div class="col-md-4">
+
+        <div id="newUser">
+            <div class="form-group">
+                <label for="accName">Create Your Account</label>
+                <input type="text" class="form-control" id="accName" placeholder="Enter Account Name" [required="string" ] data-ng-model="accName" />
+                <input type="email" class="form-control" id="accEmail" placeholder="Enter Account Email" [required="string" ] data-ng-model="accEmail" />
+                <input type="text" class="form-control" id="accContact" placeholder="Enter Account Contact Name" [required="string" ] data-ng-model="accContact" />
+            </div>
+            <button type="button" class="btn btn-default" data-ng-click="createAccount();">Submit</button>
+            <table>
+
+                <tbody>
+                    <tr>
+                        <td>
+                            Your API key is:<br />
+                            {{account.id}}
+                        </td>
+
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+    <!--create a new mission-->
+    <div class="col-md-4">
+
+        <div id="createMission" >
+            <div class="form-group">
+                <label for="miss">Declare your business Mission and key words</label>
+                <textarea class="form-control" id="miss" placeholder="Enter your business Mission and key wordse" [required="string" ] data-ng-model="missionStatement" ></textarea>
+ </div>
+            <button type="button" class="btn btn-default" data-ng-click="addMission();">Submit</button>
+            <table>
+
+                <tbody>
+                    <tr>
+                        <td>
+                            Your mission is::<br />
+                            {{mission.missionStatement}}
+                        </td>
+
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+

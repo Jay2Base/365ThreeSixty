@@ -26,6 +26,17 @@ namespace _365ThreeSixtyAPI
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
            "~/Scripts/knockout-{version}.js",
            "~/Scripts/app.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+            "~/Scripts/angular.js",
+            "~/Scripts/angular-route.js",
+            "~/Scripts/APIScripts/Module.js",
+            "~/Scripts/APIScripts/Service.js",
+            "~/Scripts/APIScripts/Controller.js"));
+
+
+
+                
         }
     }
 }

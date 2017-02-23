@@ -1,5 +1,6 @@
 ﻿using System.Web.Http;
 using _365ThreeSixtyAPI.Factories;
+using _365ThreeSixtyAPI.Models;
 
 namespace _365ThreeSixtyAPI.Controllers
 {
@@ -7,10 +8,10 @@ namespace _365ThreeSixtyAPI.Controllers
     {
         // GET: api/createAccount
 
-        public string GetCreateUserAccount(string accountName, string accountEmail, string accountContact)
+        public userAccount GetCreateUserAccount(string accountName, string accountEmail, string accountContact)
         {
             userAccountFactory f = new userAccountFactory();
-            string newAccountId = f.setUpUserAccount(accountName, accountEmail, accountContact);
+            userAccount newAccountId = f.setUpUserAccount(accountName, accountEmail, accountContact);
             return newAccountId;
 
         }
